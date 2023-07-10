@@ -1,0 +1,12 @@
+C:\GPT-4\UC10\use-case-10\use-case-10\bin\Debug\net6.0\use-case-10.deps.json
+C:\GPT-4\UC10\use-case-10\use-case-10\bin\Debug\net6.0\use-case-10.dll
+C:\GPT-4\UC10\use-case-10\use-case-10\bin\Debug\net6.0\use-case-10.pdb
+C:\GPT-4\UC10\use-case-10\use-case-10\obj\Debug\net6.0\use-case-10.csproj.AssemblyReference.cache
+C:\GPT-4\UC10\use-case-10\use-case-10\obj\Debug\net6.0\use-case-10.GeneratedMSBuildEditorConfig.editorconfig
+C:\GPT-4\UC10\use-case-10\use-case-10\obj\Debug\net6.0\use-case-10.AssemblyInfoInputs.cache
+C:\GPT-4\UC10\use-case-10\use-case-10\obj\Debug\net6.0\use-case-10.AssemblyInfo.cs
+C:\GPT-4\UC10\use-case-10\use-case-10\obj\Debug\net6.0\use-case-10.csproj.CoreCompileInputs.cache
+C:\GPT-4\UC10\use-case-10\use-case-10\obj\Debug\net6.0\use-case-10.dll
+C:\GPT-4\UC10\use-case-10\use-case-10\obj\Debug\net6.0\refint\use-case-10.dll
+C:\GPT-4\UC10\use-case-10\use-case-10\obj\Debug\net6.0\use-case-10.pdb
+C:\GPT-4\UC10\use-case-10\use-case-10\obj\Debug\net6.0\ref\use-case-10.dll
