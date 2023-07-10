@@ -1,0 +1,124 @@
+User
+Here is my class:
+public class StringValidator {
+    private readonly Regex _validator;
+
+    public StringValidator(uint length) {
+      string specialChars = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\\\\";
+      string pattern = $"^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[{specialChars}])[^\\s]{{{length},{length}}}$";
+      _validator = new Regex(pattern);
+    }
+
+    public bool IsStringValid(string inputString) {
+      return _validator.IsMatch(inputString);
+    }
+  }
+And my test class:
+public class StringValidatorTests {
+    private StringValidator _validator;
+
+    [SetUp]
+    public void SetUp() {
+      _validator = new StringValidator(8);
+    }
+
+    [Test]
+    public void TestLength() {
+      string tooShort = "Ab#1";
+      string tooLong = "Abcdefg#1H";
+      string justRight = "AbcdE&12";
+
+      Assert.IsFalse(_validator.IsStringValid(tooShort), "Expected validation to fail for string shorter than 8 characters");
+      Assert.IsFalse(_validator.IsStringValid(tooLong), "Expected validation to fail for string longer than 8 characters");
+      Assert.IsTrue(_validator.IsStringValid(justRight), "Expected validation to pass for string exactly 8 characters long");
+    }
+
+    [Test]
+    public void TestMissingElements() {
+      string noUpper = "abcdefg#1";
+      string noLower = "ABCDEFGH#1";
+      string noSpecial = "Abcdefg1";
+      string noDigit = "Abcdefg#";
+
+      Assert.IsFalse(_validator.IsStringValid(noUpper), "Expected validation to fail for string missing an uppercase letter");
+      Assert.IsFalse(_validator.IsStringValid(noLower), "Expected validation to fail for string missing a lowercase letter");
+      Assert.IsFalse(_validator.IsStringValid(noSpecial), "Expected validation to fail for string missing a special character");
+      Assert.IsFalse(_validator.IsStringValid(noDigit), "Expected validation to fail for string missing a digit");
+    }
+
+    [Test]
+    public void TestWhitespace() {
+      string leadingWhitespace = " Abcdef#1";
+      string trailingWhitespace = "Abcdef#1 ";
+      string innerWhitespace = "Abc de#1";
+
+      Assert.IsFalse(_validator.IsStringValid(leadingWhitespace), "Expected validation to fail for string with leading whitespace");
+      Assert.IsFalse(_validator.IsStringValid(trailingWhitespace), "Expected validation to fail for string with trailing whitespace");
+      Assert.IsFalse(_validator.IsStringValid(innerWhitespace), "Expected validation to fail for string with inner whitespace");
+    }
+    [Test]
+    public void AdditionalTestCases() {
+      // Inputs with various special characters
+      Assert.IsTrue(_validator.IsStringValid("Aa1!@#$%"), "Expected validation to pass for string with various special characters");
+      // Input with non-ASCII characters
+      Assert.IsFalse(_validator.IsStringValid("Åå1#2345"), "Expected validation to fail for string with non-ASCII characters");
+      // Input with no lowercase character
+      Assert.IsFalse(_validator.IsStringValid("A1!@#$%"), "Expected validation to fail for string with no lowercase character");
+      // Input with no uppercase character
+      Assert.IsFalse(_validator.IsStringValid("a1!@#$%"), "Expected validation to fail for string with no uppercase character");
+      // Input with no digit
+      Assert.IsFalse(_validator.IsStringValid("Aa!@#$%"), "Expected validation to fail for string with no digit");
+      // Input with all lowercase characters
+      Assert.IsFalse(_validator.IsStringValid("abcdefgh"), "Expected validation to fail for string with all lowercase characters");
+      // Input with all uppercase characters
+      Assert.IsFalse(_validator.IsStringValid("ABCDEFGH"), "Expected validation to fail for string with all uppercase characters");
+    }
+  }
+Help me create  Readme.md with 
+- Application description: 1 paragraph, 2-5 Sentences.
+- Regex implementation description: 1 paragraph, 4-10 Sentences.
+- Information on how to run the developed application locally.
+
+
+ChatGPT
+StringValidator
+Application Description
+StringValidator is a lightweight application implemented in C#, designed to verify the composition and length of a given string. The primary goal of this application is to ensure that a string meets specific security criteria - such as the presence of uppercase, lowercase, special characters, and numeric digits, along with conforming to a pre-set length. It is useful in various scenarios including form validation, password strength checking, and compliance checking for user inputs.
+
+Regex Implementation Description
+This application employs Regular Expressions (Regex) for the string validation process. The constructor of the StringValidator class takes a length parameter and uses it to form a Regex pattern, asserting that a valid string must contain at least one lowercase letter, one uppercase letter, one digit, one special character, and be exactly the defined length. The pattern explicitly disallows any whitespace. When the IsStringValid method is invoked with an input string, the Regex pattern is matched against the string, effectively validating the string according to the defined rules. The method returns true if the input string meets all the requirements and false otherwise.
+
+Running the Application Locally
+Follow the steps below to run the application on your local machine:
+
+Ensure you have a .NET Core compatible environment setup. You can download .NET Core from here.
+
+Clone the repository to your local machine using the command:
+
+bash
+Copy code
+git clone <repository_url>
+Replace <repository_url> with the actual URL of this repository.
+
+Navigate to the root folder of the application (where the .csproj file is located) using:
+
+bash
+Copy code
+cd <path_to_project>
+Replace <path_to_project> with the actual path to the project on your local machine.
+
+Build the application using the following command:
+
+Copy code
+dotnet build
+Run the application using the command:
+
+arduino
+Copy code
+dotnet run
+To run the tests, navigate to the test project directory (where the test .csproj file is located) and use the following command:
+
+bash
+Copy code
+dotnet test
+This will display the test results in the console.
